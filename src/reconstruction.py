@@ -137,3 +137,27 @@ def train_decision_tree(
 
     return model
 
+def prepare_time_features(hours):
+    """
+    Convert hour-of-day values into cyclical sine and cosine features.
+
+    Parameters
+    ----------
+    hours : array-like
+        Hour-of-day values in the range 0 to 23.
+
+    Returns
+    -------
+    hour_sin : numpy.ndarray
+        Sine-transformed hour values.
+
+    hour_cos : numpy.ndarray
+        Cosine-transformed hour values.
+    """
+
+    hours = np.asarray(hours)
+
+    hour_sin = np.sin(2 * np.pi * hours / 24)
+    hour_cos = np.cos(2 * np.pi * hours / 24)
+
+    return hour_sin, hour_cos
