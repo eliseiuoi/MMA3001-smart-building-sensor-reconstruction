@@ -1,12 +1,7 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
-from src.reconstruction import (
-    calculate_errors,
-    linear_interpolate,
-    train_linear_regression,
-    train_decision_tree,
-)
+
 
 def calculate_errors(actual, predicted):
     """
@@ -142,8 +137,3 @@ def train_decision_tree(
 
     return model
 
-
-
-    predictions = model.predict(X_train)
-
-    assert len(predictions) == len(y_train)
