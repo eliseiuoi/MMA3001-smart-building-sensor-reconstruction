@@ -1,6 +1,12 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
+from src.reconstruction import (
+    calculate_errors,
+    linear_interpolate,
+    train_linear_regression,
+    train_decision_tree,
+)
 
 def calculate_errors(actual, predicted):
     """
@@ -136,3 +142,83 @@ def train_decision_tree(
 
     return model
 
+
+def test_train_linear_regression_predicts_expected_shape():
+    """
+    Check that the trained linear regression model returns
+    one prediction for each input observation.
+
+    Inputs
+    ------
+    X_train : numpy array
+        Example predictor values used to train the model.
+
+    y_train : numpy array
+        Example target values corresponding to X_train.
+
+    Output
+    ------
+    The test passes if the number of predictions is equal
+    to the number of target observations.
+    """
+    X_train = np.array([
+        [1.0],
+        [2.0],
+        [3.0],
+        [4.0]
+    ])
+
+    y_train = np.array([2.0, 4.0, 6.0, 8.0])
+
+    model = train_linear_regression(X_train, y_train)
+
+    predictions = model.predict(X_train)
+
+    assert len(predictions) == len(y_train)
+
+
+def test_train_decision_tree_predicts_expected_shape():
+     """
+    Check that the trained decision tree model returns
+    one prediction for each input observation.
+
+    Inputs
+    ------
+    X_train : numpy array
+        Example predictor values used to train the model.
+
+    y_train : numpy array
+        Example target values corresponding to X_train.
+
+    max_depth : int
+        Maximum depth of the decision tree used in the test.
+
+    min_samples_leaf : int
+        Minimum number of samples allowed in each leaf.
+
+    Output
+    ------
+    The test passes if the number of predictions is equal
+    to the number of target observations.
+    """
+    X_train = np.array([
+        [1.0],
+        [2.0],
+        [3.0],
+        [4.0],
+        [5.0],
+        [6.0]
+    ])
+
+    y_train = np.array([1.0, 1.5, 2.0, 2.5, 3.0, 3.5])
+
+    model = train_decision_tree(
+        X_train,
+        y_train,
+        max_depth=2,
+        min_samples_leaf=1
+    )
+
+    predictions = model.predict(X_train)
+
+    assert len(predictions) == len(y_train)
