@@ -1,7 +1,11 @@
 import numpy as np
 
-from src.reconstruction import calculate_errors, linear_interpolate
-
+from src.reconstruction import (
+    calculate_errors,
+    linear_interpolate,
+    train_linear_regression,
+    train_decision_tree,
+)
 
 def test_calculate_errors_zero_error():
     actual = np.array([20.0, 21.0, 22.0])
