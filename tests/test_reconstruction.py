@@ -5,6 +5,7 @@ from src.reconstruction import (
     linear_interpolate,
     train_linear_regression,
     train_decision_tree,
+    prepare_time_features,
 )
 
 def test_calculate_errors_zero_error():
@@ -121,3 +122,29 @@ def test_train_decision_tree_predicts_expected_shape():
     predictions = model.predict(X_train)
 
     assert len(predictions) == len(y_train)
+
+
+def test_prepare_time_features():
+    """
+    Check that cyclical time features are calculated correctly.
+
+    Inputs
+    ------
+    hours : numpy array
+        Example hour-of-day values.
+
+    Output
+    ------
+    The test passes if the sine and cosine features match
+    their expected values for known hours.
+    """
+
+    hours = np.array([0, 6, 12, 18])
+
+    hour_sin, hour_cos = prepare_time_features(hours)
+
+    expected_sin = np.array([0.0, 1.0, 0.0, -1.0])
+    expected_cos = np.array([1.0, 0.0, -1.0, 0.0])
+
+    assert np.allclose(hour_sin, expected_sin)
+    assert np.allclose(hour_cos, expected_cos)
