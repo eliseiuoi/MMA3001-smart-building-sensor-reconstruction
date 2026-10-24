@@ -66,8 +66,6 @@ def linear_interpolate(t1, T1, t2, T2, t):
     return T1 + ((t - t1) / (t2 - t1)) * (T2 - T1)
 
 
-from sklearn.linear_model import LinearRegression
-from sklearn.tree import DecisionTreeRegressor
 
 
 def train_linear_regression(X_train, y_train):
