@@ -23,7 +23,7 @@ def calculate_errors(actual, predicted):
     rmse : float
         Root Mean Squared Error.
     """
-
+    # Convert inputs to NumPy arrays for vectorised calculations
     actual = np.asarray(actual)
     predicted = np.asarray(predicted)
 
@@ -59,10 +59,10 @@ def linear_interpolate(t1, T1, t2, T2, t):
     float
         Interpolated temperature at time t.
     """
-
+    # Prevent division by zero when the two timestamps are identical
     if t2 == t1:
         raise ValueError("t1 and t2 must be different.")
-
+    # Apply the linear interpolation formula
     return T1 + ((t - t1) / (t2 - t1)) * (T2 - T1)
 
 
@@ -85,7 +85,7 @@ def train_linear_regression(X_train, y_train):
     LinearRegression
         Trained linear regression model.
     """
-
+    # Create and fit the linear regression model
     model = LinearRegression()
     model.fit(X_train, y_train)
 
@@ -124,13 +124,13 @@ def train_decision_tree(
     DecisionTreeRegressor
         Trained decision tree model.
     """
-
+    # Create the decision tree using the selected model settings
     model = DecisionTreeRegressor(
         max_depth=max_depth,
         min_samples_leaf=min_samples_leaf,
         random_state=random_state
     )
-
+    # Fit the model to the training data
     model.fit(X_train, y_train)
 
     return model
@@ -154,7 +154,7 @@ def prepare_time_features(hours):
     """
 
     hours = np.asarray(hours)
-
+    # Convert hour-of-day into cyclical sine and cosine features
     hour_sin = np.sin(2 * np.pi * hours / 24)
     hour_cos = np.cos(2 * np.pi * hours / 24)
 
