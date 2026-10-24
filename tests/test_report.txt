@@ -1,0 +1,14 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.2, pytest-9.1.1, pluggy-1.7.0 -- /home/codespace/.python/current/bin/python
+cachedir: .pytest_cache
+rootdir: /workspaces/MMA3001-smart-building-sensor-reconstruction
+plugins: anyio-4.15.1
+collecting ... collected 5 items
+
+tests/test_reconstruction.py::test_calculate_errors_zero_error PASSED    [ 20%]
+tests/test_reconstruction.py::test_linear_interpolation_midpoint PASSED  [ 40%]
+tests/test_reconstruction.py::test_train_linear_regression_predicts_expected_shape PASSED [ 60%]
+tests/test_reconstruction.py::test_train_decision_tree_predicts_expected_shape PASSED [ 80%]
+tests/test_reconstruction.py::test_prepare_time_features PASSED          [100%]
+
+============================== 5 passed in 1.20s ===============================
