@@ -33,6 +33,8 @@ For the machine-learning models, the final predictor set includes:
 - CO₂
 - Cyclical hour-of-day features (`hour_sin` and `hour_cos`)
 
+The dataset used in the project is included in the `data/` directory.
+
 ## Computational Methods
 
 ### Linear Interpolation
@@ -82,7 +84,7 @@ Linear interpolation achieved the lowest reconstruction error for isolated missi
 
 Linear interpolation is recommended for retrospective reconstruction of short missing temperature intervals when valid temperature measurements are available immediately before and after the missing region.
 
-Regression models may provide an alternative when neighbouring temperature measurements are unavailable but other environmental measurements remain available.
+Linear regression may provide an alternative when neighbouring temperature measurements are unavailable but other environmental measurements remain available.
 
 However, in this dataset, the tested regression models did not outperform interpolation.
 
@@ -96,7 +98,13 @@ MMA3001-smart-building-sensor-reconstruction/
 ├── requirements.txt
 │
 ├── 01_data_exploration.ipynb
-├── 02_reconstruction_validation.ipynb
+├── 02_reconstruction_validation_ipynb.ipynb
+│
+├── data/
+│   └── Env_data_MSI_Lab - 30-07-2025_19-12-2025.csv
+│
+├── report/
+│   └── MMA3001 Project Report_submission_final.pdf
 │
 ├── src/
 │   ├── __init__.py
@@ -174,6 +182,18 @@ python -m http.server 8000 --directory docs
 
 Then open port `8000` in a web browser.
 
+## Project Report
+
+The final project report is included in the:
+
+```text
+report/
+```
+
+directory.
+
+The report documents the engineering problem, dataset, computational methods, validation, results, optimisation, limitations, lessons learned and AI-use reflection.
+
 ## Main Limitations
 
 - Sensor measurements are irregularly sampled in time.
@@ -187,11 +207,13 @@ Then open port `8000` in a web browser.
 
 The repository includes:
 
+- the original project dataset
 - reproducible Jupyter notebooks
 - reusable Python source code
 - automated `pytest` tests
 - a saved test report
 - dependency information in `requirements.txt`
 - generated HTML source-code documentation
+- the final project report
 
 Version control is maintained using Git and GitHub.
